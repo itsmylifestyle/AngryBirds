@@ -16,14 +16,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var elbasy = SKSpriteNode()
     
     var box1 = SKSpriteNode()
+    let box1texture = SKTexture(imageNamed: "box1")
     var box2 = SKSpriteNode()
+    let box2texture = SKTexture(imageNamed: "box2")
     var box3 = SKSpriteNode()
+    let box3texture = SKTexture(imageNamed: "box3")
     var box4 = SKSpriteNode()
+    let box4texture = SKTexture(imageNamed: "box4")
     var box5 = SKSpriteNode()
+    let box5texture = SKTexture(imageNamed: "box5")
     var box6 = SKSpriteNode()
+    let box6texture = SKTexture(imageNamed: "box6")
     var box7 = SKSpriteNode()
+    let box7texture = SKTexture(imageNamed: "box7")
     var box8 = SKSpriteNode()
+    let box8texture = SKTexture(imageNamed: "box8")
     var box9 = SKSpriteNode()
+    let box9texture = SKTexture(imageNamed: "box9")
     
     
     var gameStarted = false
@@ -46,14 +55,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(bird2)
          */
         //Scene physics
-        self.physicsBody = SKPhysicsBody(edgeLoopFrom: frame.offsetBy(dx: 0, dy: 120))
+        self.physicsBody = SKPhysicsBody(edgeLoopFrom: frame.offsetBy(dx: 0, dy: 100))
         self.scene?.scaleMode = .aspectFit
         self.physicsWorld.contactDelegate = self
         
         //Bird Physics
         bird = childNode(withName: "pres") as! SKSpriteNode
         let texture = SKTexture(imageNamed: "pres")
-        bird.physicsBody = SKPhysicsBody(circleOfRadius: texture.size().height / 10)
+        bird.physicsBody = SKPhysicsBody(texture: texture, size: bird.size)
         bird.physicsBody?.affectedByGravity = false
         bird.physicsBody?.isDynamic = true
         bird.physicsBody?.mass = 0.25
@@ -65,7 +74,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //elbasy
         elbasy = childNode(withName: "elbasy") as! SKSpriteNode
         let eltext = SKTexture(imageNamed: "elbasy")
-        elbasy.physicsBody = SKPhysicsBody(circleOfRadius: eltext.size().height / 10)
+        elbasy.physicsBody = SKPhysicsBody(texture: eltext, size: elbasy.size)
         elbasy.physicsBody?.affectedByGravity = true
         elbasy.physicsBody?.isDynamic = true
         elbasy.physicsBody?.allowsRotation = true
@@ -73,27 +82,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         elbasy.physicsBody?.collisionBitMask = ColliderTypes.Bird.rawValue
         
         //Boxes physics
-        let boxtext = SKTexture(imageNamed: "box")
-        let boxSize = CGSize(width: boxtext.size().width / 5, height: boxtext.size().height / 5)
+        
         
         box1 = childNode(withName: "box1") as! SKSpriteNode
-        box1.physicsBody = SKPhysicsBody(rectangleOf: boxSize)
+        let textureSize = CGSize(width: box1texture.size().width, height: box1texture.size().height)
+        let smallerSize = CGSize(width: textureSize.width - 30, height: textureSize.height - 30)
+        box1.physicsBody = SKPhysicsBody(rectangleOf: smallerSize)
         box1.physicsBody?.isDynamic = true
         box1.physicsBody?.affectedByGravity = true
         box1.physicsBody?.allowsRotation = true
-        box1.physicsBody?.mass = 0.4
+        box1.physicsBody?.mass = 1
         //box1.physicsBody?.collisionBitMask = ColliderTypes.Bird.rawValue
         
         box2 = childNode(withName: "box2") as! SKSpriteNode
-        box2.physicsBody = SKPhysicsBody(rectangleOf: boxSize)
+        box1.physicsBody = SKPhysicsBody(rectangleOf: smallerSize)
         box2.physicsBody?.isDynamic = true
         box2.physicsBody?.affectedByGravity = true
         box2.physicsBody?.allowsRotation = true
-        box2.physicsBody?.mass = 0.4
+        box2.physicsBody?.mass = 1
         //box2.physicsBody?.collisionBitMask = ColliderTypes.Bird.rawValue
         
         box3 = childNode(withName: "box3") as! SKSpriteNode
-        box3.physicsBody = SKPhysicsBody(rectangleOf: boxSize)
+        box3.physicsBody = SKPhysicsBody(rectangleOf: smallerSize)
         box3.physicsBody?.isDynamic = true
         box3.physicsBody?.affectedByGravity = true
         box3.physicsBody?.allowsRotation = true
@@ -101,7 +111,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //box3.physicsBody?.collisionBitMask = ColliderTypes.Bird.rawValue
         
         box4 = childNode(withName: "box4") as! SKSpriteNode
-        box4.physicsBody = SKPhysicsBody(rectangleOf: boxSize)
+        box4.physicsBody = SKPhysicsBody(rectangleOf: smallerSize)
         box4.physicsBody?.isDynamic = true
         box4.physicsBody?.affectedByGravity = true
         box4.physicsBody?.allowsRotation = true
@@ -109,7 +119,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
        // box4.physicsBody?.collisionBitMask = ColliderTypes.Bird.rawValue
         
         box5 = childNode(withName: "box5") as! SKSpriteNode
-        box5.physicsBody = SKPhysicsBody(rectangleOf: boxSize)
+        box5.physicsBody = SKPhysicsBody(rectangleOf: smallerSize)
         box5.physicsBody?.isDynamic = true
         box5.physicsBody?.affectedByGravity = true
         box5.physicsBody?.allowsRotation = true
@@ -117,7 +127,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
        // box5.physicsBody?.collisionBitMask = ColliderTypes.Bird.rawValue
         
         box6 = childNode(withName: "box6") as! SKSpriteNode
-        box6.physicsBody = SKPhysicsBody(rectangleOf: boxSize)
+        box6.physicsBody = SKPhysicsBody(rectangleOf: smallerSize)
         box6.physicsBody?.isDynamic = true
         box6.physicsBody?.affectedByGravity = true
         box6.physicsBody?.allowsRotation = true
@@ -125,7 +135,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //box6.physicsBody?.collisionBitMask = ColliderTypes.Bird.rawValue
         
         box7 = childNode(withName: "box7") as! SKSpriteNode
-        box7.physicsBody = SKPhysicsBody(rectangleOf: boxSize)
+        box7.physicsBody = SKPhysicsBody(rectangleOf: smallerSize)
         box7.physicsBody?.isDynamic = true
         box7.physicsBody?.affectedByGravity = true
         box7.physicsBody?.allowsRotation = true
@@ -133,7 +143,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
        // box7.physicsBody?.collisionBitMask = ColliderTypes.Bird.rawValue
         
         box8 = childNode(withName: "box8") as! SKSpriteNode
-        box8.physicsBody = SKPhysicsBody(rectangleOf: boxSize)
+        box8.physicsBody = SKPhysicsBody(rectangleOf: smallerSize)
         box8.physicsBody?.isDynamic = true
         box8.physicsBody?.affectedByGravity = true
         box8.physicsBody?.allowsRotation = true
@@ -141,7 +151,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       //  box8.physicsBody?.collisionBitMask = ColliderTypes.Bird.rawValue
         
         box9 = childNode(withName: "box9") as! SKSpriteNode
-        box9.physicsBody = SKPhysicsBody(rectangleOf: boxSize)
+        box9.physicsBody = SKPhysicsBody(rectangleOf: smallerSize)
         box9.physicsBody?.isDynamic = true
         box9.physicsBody?.affectedByGravity = true
         box9.physicsBody?.allowsRotation = true
