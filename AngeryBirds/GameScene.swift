@@ -163,6 +163,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel.fontName = "Helvetica"
         scoreLabel.fontSize = 60
         scoreLabel.text = "0"
+        scoreLabel.fontColor = .black
         scoreLabel.position = CGPoint(x: 0, y: self.frame.height / 4)
         scoreLabel.zPosition = 4
         self.addChild(scoreLabel)
